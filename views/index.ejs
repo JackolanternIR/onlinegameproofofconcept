@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Proof of Concept</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-2.1.4.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        #chatinput {
+            width: 50em;
+        }
+    </style>
+    <script>
+        $(function(){
+            var socket = io();
+            
+            $('#loginbutton').click(function(){
+                var loginName = $('#loginname').val();
+                socket.emit('login', loginName);
+            });
+            
+            $('#sendchat').click(function(){
+                var chatText = $('#chatinput').val();
+                socket.emit('message', chatText);
+            });
+
+            socket.on('loggedIn', function(){
+                $('#loginui').css('display', 'none');
+                $('#chatui').css('display', 'block');
+            });
+
+            socket.on('message', function(data){
+                $('#chatbox').append(data.name + ": " + data.msg + "\n");
+            });
+
+        });
+    </script>
+  </head>
+  <body>
+    <div id="loginui">
+        <label for="loginname">Choose a name for chat</label>
+        <input id="loginname" type="text" name="loginname" />
+        <button id="loginbutton">Login</button>
+    </div>
+    <div id="chatui" style="display: none;">
+        <textarea id="chatbox" rows="20" cols="100"></textarea><br>
+        <input id="chatinput" type="text" name="chatinput" />
+        <button id="sendchat">Send</button>
+    </div>
+  </body>
+</html>

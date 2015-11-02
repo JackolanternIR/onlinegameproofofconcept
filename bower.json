@@ -1,0 +1,22 @@
+{
+  "name": "sideworldprototype",
+  "version": "0.0.1",
+  "authors": [
+    "timcrouch <dacypher@gmail.com>"
+  ],
+  "description": "A prototype for real-time click-to-move online RPG functionality",
+  "main": "./bin/www",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
