@@ -2,8 +2,9 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var http = require('http').Server(app);
+var gameView = require('./routes/game');
 var server = require('socket.io');
 var io = server(http);
 var socketSetup = require('./server_modules/socketSetup');
@@ -13,7 +14,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', routes);
+app.get('/', index);
+app.get('/game', gameView.gamePage);
 
 io.on('connection', socketSetup.socketConnection);
 socketSetup.setSocketServer(io);
