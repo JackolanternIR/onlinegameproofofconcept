@@ -7,9 +7,6 @@ var bootState = {
     },
 
     create: function() {
-
-        console.log("Inside the bootState create function");
-
         // Set some game settings #3498db
         PT.game.stage.backgroundColor = '#228B22';
         PT.game.physics.startSystem(Phaser.Physics.ARCADE);
