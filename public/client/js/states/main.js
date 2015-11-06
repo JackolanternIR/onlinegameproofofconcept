@@ -18,9 +18,6 @@ var mainState = {
         //create the character
         this.char = PT.Character();
 
-        //create the walkingService
-        //this.walkingService
-
         //create the mouseDown event
         var tileX, tileY;
         PT.game.input.mouse.onMouseDown = function(e) {

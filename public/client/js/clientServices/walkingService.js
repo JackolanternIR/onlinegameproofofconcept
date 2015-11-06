@@ -20,15 +20,6 @@ ClientServices.WalkingService = function() {
             var width = inLayer.width / tileX;
             var height = inLayer.height / tileY;
             currentGrid = new PF.Grid(width, height);
-            //currentGrid = new PF.Grid(inTileKey.length, inTileKey[0].length);
-            //for(var x = 0; x < inTileKey.length; x++) {
-            //    for (var y = 0; y < inTileKey[x].length; y++) {
-            //        currentGrid.setWalkableAt(x, y, inTileKey[x][y] === 0);
-            //    }
-            //}
-            //
-            //console.log("The PF Grid:");
-            //console.log(currentGrid);
         },
 
         setWalkable: function(x, y, walkable) {

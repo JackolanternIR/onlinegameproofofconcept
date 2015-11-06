@@ -16,23 +16,13 @@ ClientServices.TileKeyService = function(inTileMap, inGroundLayer, tileSizeX, ti
     //get the tiles from the layer sent in
     var allTiles = inGroundLayer.getTiles(0, 0, inTileMap.widthInPixels, inTileMap.heightInPixels);
 
-    //fill a 2D array the size of the map ahead of time to prevent JS multidimensional array undefined errors
-    //var tileKey = new Array(inTileMap.height);
-    //for (var y = 0; y < inTileMap.width; y++) {
-    //    tileKey[y] = new Array(inTileMap.height);
-    //}
-
     //create the grid in the walking service
     walkingService.createGrid(inGroundLayer, tileSizeX, tileSizeY);
 
     //parse the map
     for (var x = 0; x < allTiles.length; x++) {
-        //tileKey[allTiles[x].worldX / tileSizeX][allTiles[x].worldY / tileSizeY] = allTiles[x].index === movableIndex ? 0 : 1;
         walkingService.setWalkable(allTiles[x].worldX / tileSizeX, allTiles[x].worldY / tileSizeY, allTiles[x].index === movableIndex);
     }
 
     walkingService.viewGrid();
-
-    //return the tilekey
-    //return tileKey;
 };
