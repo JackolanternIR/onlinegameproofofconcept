@@ -8,24 +8,31 @@ var ClientServices = ClientServices || {};
  * @param tileSizeY The width of the tiles used in the map
  * @param movableIndex The index used for tiles that can be moved onto
  * @param obstacleIndex The index used for tiles that cannot be moved on or through
+ * @param walkingService The service that handles the click-to-move movement
  * @constructor
  */
-ClientServices.TileKeyService = function(inTileMap, inGroundLayer, tileSizeX, tileSizeY, movableIndex, obstacleIndex) {
+ClientServices.TileKeyService = function(inTileMap, inGroundLayer, tileSizeX, tileSizeY, movableIndex, obstacleIndex, walkingService) {
 
     //get the tiles from the layer sent in
     var allTiles = inGroundLayer.getTiles(0, 0, inTileMap.widthInPixels, inTileMap.heightInPixels);
 
     //fill a 2D array the size of the map ahead of time to prevent JS multidimensional array undefined errors
-    var tileKey = new Array(inTileMap.height);
-    for (var y = 0; y < inTileMap.width; y++) {
-        tileKey[y] = new Array(inTileMap.height);
-    }
+    //var tileKey = new Array(inTileMap.height);
+    //for (var y = 0; y < inTileMap.width; y++) {
+    //    tileKey[y] = new Array(inTileMap.height);
+    //}
+
+    //create the grid in the walking service
+    walkingService.createGrid(inGroundLayer, tileSizeX, tileSizeY);
 
     //parse the map
     for (var x = 0; x < allTiles.length; x++) {
-        tileKey[allTiles[x].worldX / tileSizeX][allTiles[x].worldY / tileSizeY] = allTiles[x].index === movableIndex ? 'movable' : 'obstacle';
+        //tileKey[allTiles[x].worldX / tileSizeX][allTiles[x].worldY / tileSizeY] = allTiles[x].index === movableIndex ? 0 : 1;
+        walkingService.setWalkable(allTiles[x].worldX / tileSizeX, allTiles[x].worldY / tileSizeY, allTiles[x].index === movableIndex);
     }
 
+    walkingService.viewGrid();
+
     //return the tilekey
-    return tileKey;
+    //return tileKey;
 };

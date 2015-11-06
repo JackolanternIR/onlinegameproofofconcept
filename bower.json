@@ -5,12 +5,12 @@
     "timcrouch <dacypher@gmail.com>"
   ],
   "description": "A prototype for real-time click-to-move online RPG functionality",
-  "main": "./bin/www",
+  "main": "app.js",
   "moduleType": [
     "node"
   ],
-  "license": "MIT",
-  "homepage": "",
+  "license": "Proprietary",
+  "homepage": "https://github.com/JackolanternIR/onlinegameproofofconcept",
   "private": true,
   "ignore": [
     "**/.*",
@@ -18,5 +18,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "pathfinding": "~0.4.17"
+  }
 }

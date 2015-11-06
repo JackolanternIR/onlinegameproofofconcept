@@ -13,17 +13,20 @@ var mainState = {
         this.map.addTilesetImage('grass');
         this.layer = this.map.createLayer('Tile Layer 1');
         var tileset = this.layer.getTiles(0, 0, 1024, 800);
-        this.tileKey = ClientServices.TileKeyService(this.map, this.layer, 32, 32, 193, 15);
+        this.tileKey = ClientServices.TileKeyService(this.map, this.layer, 32, 32, 193, 15, ClientServices.WalkingService);
 
         //create the character
         this.char = PT.Character();
+
+        //create the walkingService
+        //this.walkingService
 
         //create the mouseDown event
         var tileX, tileY;
         PT.game.input.mouse.onMouseDown = function(e) {
             tileX = that.layer.getTileX(e.layerX);
             tileY = that.layer.getTileY(e.layerY);
-            console.log("X: " + tileX + ", Y: " + tileY + ", Type: " + that.tileKey[tileX][tileY]);
+            console.log("X: " + tileX + ", Y: " + tileY + ", Type: " + ClientServices.WalkingService.isWalkable(tileX, tileY));
         };
     },
     update: function() {

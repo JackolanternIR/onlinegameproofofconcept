@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title><%= title%> </title>
+    <!-- Libraries  -->
     <script src="/javascripts/phaser.js"></script>
+    <script src="/javascripts/pathfinding-browser.js"></script>
+
+    <!-- Client-side services -->
+    <script src="/client/js/clientServices/walkingService.js"></script>
     <script src="/client/js/clientServices/tileKeyService.js"></script>
+
+    <!-- States -->
     <script src="/client/js/init.js"></script>
-    <script src="/client/js/classes/bases/Base.js"></script>
     <script src="/client/js/states/boot.js"></script>
     <script src="/client/js/states/preload.js"></script>
     <script src="/client/js/states/main.js"></script>
+
+    <!-- Controllers  -->
+    <script src="/client/js/classes/bases/Base.js"></script>
     <script src="/client/js/classes/bases/MobileObject.js"></script>
     <script src="/client/js/classes/character.js"></script>
     <script src="/client/js/app.js"></script>
