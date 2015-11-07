@@ -23,7 +23,8 @@ var mainState = {
         PT.game.input.mouse.onMouseDown = function(e) {
             tileX = that.layer.getTileX(e.layerX);
             tileY = that.layer.getTileY(e.layerY);
-            console.log("X: " + tileX + ", Y: " + tileY + ", Type: " + ClientServices.WalkingService.isWalkable(tileX, tileY));
+            //console.log("X: " + tileX + ", Y: " + tileY + ", Type: " + ClientServices.WalkingService.isWalkable(tileX, tileY));
+            ClientServices.WalkingService.clickMap(tileX, tileY);
         };
     },
     update: function() {

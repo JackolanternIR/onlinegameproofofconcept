@@ -7,11 +7,20 @@ var ClientServices = ClientServices || {};
 ClientServices.WalkingService = function() {
     //private members
     var currentGrid;
+    var tempGrid;
+    var finder;
+
+    //create the A* pathfinder object on service creation
+    finder = new PF.AStarFinder({
+        allowDiagonal: false,
+        dontCrossCorners: true,
+        heuristic: PF.Heuristic.manhattan
+    });
 
     //return public interface
     return {
         /**
-         * The method to create the PF grid
+         * Create the PF grid on map loading
          * @param inLayer The layer of the map to create the grid from
          * @param tileX The width of the tiles used
          * @param tileY The height of the tiles used
@@ -22,17 +31,47 @@ ClientServices.WalkingService = function() {
             currentGrid = new PF.Grid(width, height);
         },
 
+        /**
+         * A wrapper for Pathfinding's setWalkableAt function
+         * @param x The X coordinate of the tile (tile coordinates, not pixel)
+         * @param y The Y coordinate of the tile (tile coordinates, not pixel)
+         * @param walkable A boolean that determines if the player can walk onto this tile
+         */
         setWalkable: function(x, y, walkable) {
             currentGrid.setWalkableAt(x, y, walkable);
         },
 
+        /**
+         * Testing function used to log the grid to the console
+         */
         viewGrid: function() {
             console.log("The PF Grid:");
             console.log(currentGrid);
         },
 
+        /**
+         * Determines if the passed in tile is walkable
+         * @param x The X coordinate of the tile (tile coordinates, not pixel)
+         * @param y The Y coordinate of the tile (tile coordinates, not pixel)
+         * @returns {boolean|*|i|r}
+         */
         isWalkable: function(x, y) {
             return currentGrid.nodes[y][x].walkable;
+        },
+
+        /**
+         * Handles clicks on the map
+         * @param x The X coordinate of the tile (tile coordinates, not pixel)
+         * @param y The Y coordinate of the tile (tile coordinates, not pixel)
+         */
+        clickMap: function(x, y) {
+            if (this.isWalkable(x, y)) {
+                //create a clone of the grid since process is destructive
+                tempGrid = Object.clone(currentGrid, true);
+
+            } else {
+                console.log("Tile (" + x + ", " + y +") is not a walkable tile.");
+            }
         }
     };
 };

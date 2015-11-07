@@ -1,4 +1,4 @@
-PT.Character = function() {
+PT.Character = function(x, y) {
 
     //inherits from base
     var o = PT.MobileObject();
@@ -10,7 +10,7 @@ PT.Character = function() {
     char.animations.add('up', [9, 10, 11], 10, true);
 
     //set the char object and other data
-    o.setCharacterObject(char, 120, [10, 1, 4, 7]);
+    o.setCharacterObject(char, x, y, [10, 1, 4, 7]);
 
     //return the character
     return o;
