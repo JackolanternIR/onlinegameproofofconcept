@@ -20,6 +20,10 @@
     "tests"
   ],
   "dependencies": {
-    "pathfinding": "~0.4.17"
+    "pathfinding": "~0.4.17",
+    "phaser": "~2.4.4",
+    "js-object-clone": "~0.4.2",
+    "bowser": "~1.0.0",
+    "jquery": "~2.1.4"
   }
 }

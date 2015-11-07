@@ -16,15 +16,16 @@ var mainState = {
         this.tileKey = ClientServices.TileKeyService(this.map, this.layer, 32, 32, 193, 15, ClientServices.WalkingService);
 
         //create the character
-        this.char = PT.Character();
+        this.char = PT.Character(0, 0);
+
 
         //create the mouseDown event
-        var tileX, tileY;
+        var tileX, tileY, currentTiles;
         PT.game.input.mouse.onMouseDown = function(e) {
             tileX = that.layer.getTileX(e.layerX);
             tileY = that.layer.getTileY(e.layerY);
-            //console.log("X: " + tileX + ", Y: " + tileY + ", Type: " + ClientServices.WalkingService.isWalkable(tileX, tileY));
-            ClientServices.WalkingService.clickMap(tileX, tileY);
+            currentTiles = that.char.getCurrentTileLocation();
+            ClientServices.WalkingService.clickMap(that.char, tileX, tileY);
         };
     },
     update: function() {

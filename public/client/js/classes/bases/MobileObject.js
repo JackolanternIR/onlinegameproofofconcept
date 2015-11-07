@@ -5,6 +5,7 @@ PT.MobileObject = function() {
     var heading = "d";
     var currentTile = {};
     var currentPixel = {};
+    var movementTweens;
 
     //inherit from PT.Base
     var o = PT.Base();
@@ -32,6 +33,14 @@ PT.MobileObject = function() {
          * Will need to use the height and width of the char sprite to
          * determine what pixel value to set the char sprite object at using the tile
          */
+        var spriteHeightOffset = char.height - tileSize;
+        char.x = x * tileSize;
+        char.y = (y * tileSize) - spriteHeightOffset;
+
+        currentPixel = {
+            x: char.x,
+            y: char.y
+        };
 
         //also set the pixel location
 
@@ -43,12 +52,11 @@ PT.MobileObject = function() {
      * @returns {{}} A point object containing x and y tile coordinates of the character (not pixels)
      */
     o.getCurrentTileLocation = function() {
-        if (currentTile.x) {
+        if (currentTile.x || currentTile.x === 0) {
             return currentTile;
         } else {
             throw "Location is not set.";
         }
-
     };
 
     /**
@@ -56,11 +64,19 @@ PT.MobileObject = function() {
      * @returns {{}} A point object containing the x and y pixel coordinates of the character
      */
     o.getCurrentPixelLocation = function() {
-        if (currentPixel.x) {
+        if (currentPixel.x || currentPixel.x === 0) {
             return currentPixel;
         } else {
             throw "Pixel location is not set.";
         }
+    };
+
+    /**
+     * Tweens the character to their new location
+     * @param movementArray An array of movements to get to their target tile
+     */
+    o.moveCharacter = function(movementArray) {
+        console.log(movementArray);
     };
 
     o.left = function() {

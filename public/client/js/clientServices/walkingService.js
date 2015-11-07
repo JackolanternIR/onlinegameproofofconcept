@@ -61,16 +61,19 @@ ClientServices.WalkingService = function() {
 
         /**
          * Handles clicks on the map
-         * @param x The X coordinate of the tile (tile coordinates, not pixel)
-         * @param y The Y coordinate of the tile (tile coordinates, not pixel)
+         * @param char The character moving
+         * @param x2 The X coordinate of the target tile (tile coordinates, not pixel)
+         * @param y2 The Y coordinate of the target tile (tile coordinates, not pixel)
          */
-        clickMap: function(x, y) {
-            if (this.isWalkable(x, y)) {
+        clickMap: function(char, x2, y2) {
+            if (this.isWalkable(x2, y2)) {
                 //create a clone of the grid since process is destructive
                 tempGrid = Object.clone(currentGrid, true);
-
+                var tilePoint = char.getCurrentTileLocation();
+                var path = finder.findPath(tilePoint.x, tilePoint.y, x2, y2, tempGrid);
+                char.moveCharacter(path);
             } else {
-                console.log("Tile (" + x + ", " + y +") is not a walkable tile.");
+                console.log("Tile (" + x2 + ", " + y2 +") is not a walkable tile.");
             }
         }
     };
