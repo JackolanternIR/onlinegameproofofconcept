@@ -3,9 +3,7 @@ var mainState = {
     create: function() {
 
         var that = this;
-
-        //create the cursors for keyboard movement
-        this.cursors = PT.game.input.keyboard.createCursorKeys();
+        PT.gameState = this;
 
         //create the tilemap
         this.map = PT.game.add.tilemap('samplemap');
@@ -16,19 +14,38 @@ var mainState = {
         this.tileKey = ClientServices.TileKeyService(this.map, this.layer, 32, 32, 193, 15, ClientServices.WalkingService);
 
         //create the character
-        this.char = PT.Character(0, 0);
+        //this.char = PT.Character(0, 0);
 
 
         //create the mouseDown event
-        var tileX, tileY, currentTiles;
-        PT.game.input.mouse.onMouseDown = function(e) {
-            tileX = that.layer.getTileX(e.layerX);
-            tileY = that.layer.getTileY(e.layerY);
-            currentTiles = that.char.getCurrentTileLocation();
-            ClientServices.WalkingService.clickMap(that.char, tileX, tileY);
-        };
+        //var tileX, tileY, currentTiles;
+        //PT.game.input.mouse.onMouseDown = function(e) {
+        //    tileX = that.layer.getTileX(e.layerX);
+        //    tileY = that.layer.getTileY(e.layerY);
+        //    currentTiles = that.char.getCurrentTileLocation();
+        //    ClientServices.WalkingService.clickMap(that.char, tileX, tileY);
+        //};
     },
     update: function() {
+        //console.log("Entering the update to check if " + !!this.char + " is set");
+        var that = this;
+        //see if the character exists, and if not, see if it is set
+        if (!this.char) {
+            //console.log("Inside setting the char");
+            var ownPlayer = ClientServices.ClientCharacterService.getOwnPlayerCharacter();
+            //console.log("Result from ownPlayer:");
+            //console.log(ownPlayer);
+            if (ownPlayer) {
+                this.char = PT.Character(ownPlayer.x, ownPlayer.y);
+                var tileX, tileY, currentTiles;
+                PT.game.input.mouse.onMouseDown = function(e) {
+                    tileX = that.layer.getTileX(e.layerX);
+                    tileY = that.layer.getTileY(e.layerY);
+                    currentTiles = that.char.getCurrentTileLocation();
+                    ClientServices.WalkingService.clickMap(that.char, tileX, tileY);
+                };
+            }
+        }
 
         //if (this.cursors.left.isDown) {
         //    this.char.left();

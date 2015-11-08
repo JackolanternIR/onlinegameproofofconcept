@@ -1,16 +1,16 @@
 $(function(){
 
-    $('#loginbutton').click(function(){
-        var loginName = $('#loginname').val();
-        PT.socket.emit('login', loginName);
-    });
-
-    $('#loginname').keypress(function(e){
-        if (e.keyCode === 13) {
-            $('#loginbutton').click();
-            return false;
-        }
-    });
+    //$('#loginbutton').click(function(){
+    //    var loginName = $('#loginname').val();
+    //    PT.socket.emit('login', loginName);
+    //});
+    //
+    //$('#loginname').keypress(function(e){
+    //    if (e.keyCode === 13) {
+    //        $('#loginbutton').click();
+    //        return false;
+    //    }
+    //});
 
     $('#chatinput').keypress(function(e){
         if(e.keyCode === 13) {
@@ -26,10 +26,10 @@ $(function(){
         PT.socket.emit('message', chatText);
     });
 
-    PT.socket.on('loggedIn', function(){
-        $('#loginui').css('display', 'none');
-        $('#chatui').css('display', 'block');
-    });
+    //PT.socket.on('loggedIn', function(){
+    //    $('#loginui').css('display', 'none');
+    //    $('#chatui').css('display', 'block');
+    //});
 
     PT.socket.on('message', function(data){
         var $chatbox = $('#chatbox');

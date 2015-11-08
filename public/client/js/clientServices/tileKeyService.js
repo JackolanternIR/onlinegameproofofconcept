@@ -24,5 +24,5 @@ ClientServices.TileKeyService = function(inTileMap, inGroundLayer, tileSizeX, ti
         walkingService.setWalkable(allTiles[x].worldX / tileSizeX, allTiles[x].worldY / tileSizeY, allTiles[x].index === movableIndex);
     }
 
-    walkingService.viewGrid();
+    //walkingService.viewGrid();
 };
