@@ -117,6 +117,7 @@ PT.MobileObject = function() {
         //make sure the movement array was not empty
         if (pathArray.length > 0) {
             moveTween = PT.game.add.tween(character).to({x: (pathArray[0][0] * tileWidth), y: ((pathArray[0][1] * tileWidth) + spriteHeightOffset)}, 250);
+            //store the current movement tween to stop it on a second move
             currentMovement = moveTween;
             //if there is a next movement, set it up to run at the end
             if (pathArray.length > 1) {

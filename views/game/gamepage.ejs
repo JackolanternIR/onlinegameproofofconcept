@@ -8,6 +8,8 @@
     <script src="/javascripts/pathfinding-browser.js"></script>
     <script src="/javascripts/bowser.js"></script>
     <script src="/javascripts/object-clone.js"></script>
+    <script src="/javascripts/jquery-2.1.4.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
     <!-- Client-side services -->
     <script src="/client/js/clientServices/walkingService.js"></script>
@@ -23,9 +25,33 @@
     <script src="/client/js/classes/bases/Base.js"></script>
     <script src="/client/js/classes/bases/MobileObject.js"></script>
     <script src="/client/js/classes/character.js"></script>
+
+    <!-- Client setup -->
     <script src="/client/js/app.js"></script>
+    <script src="/client/js/chat.js"></script>
+    <style>
+        #gameView {
+            float: left;
+        }
+        #chatBox {
+            float: right;
+        }
+    </style>
 </head>
 <body>
 <div id="gameView"></div>
+
+<div id="chatBox">
+    <div id="loginui">
+        <label for="loginname">Choose a name for chat</label>
+        <input id="loginname" type="text" name="loginname" />
+        <button id="loginbutton">Login</button>
+    </div>
+    <div id="chatui" style="display: none;">
+        <textarea id="chatbox" rows="15" cols="48"></textarea><br>
+        <input id="chatinput" type="text" name="chatinput" />
+        <button id="sendchat">Send</button>
+    </div>
+</div>
 </body>
 </html>
