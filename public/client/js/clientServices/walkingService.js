@@ -71,7 +71,7 @@ ClientServices.WalkingService = function() {
                 tempGrid = Object.clone(currentGrid, true);
                 var tilePoint = char.getCurrentTileLocation();
                 var path = finder.findPath(tilePoint.x, tilePoint.y, x2, y2, tempGrid);
-                char.moveCharacter(path);
+                char.setMovementPath(path);
             } else {
                 console.log("Tile (" + x2 + ", " + y2 +") is not a walkable tile.");
             }
