@@ -8,6 +8,7 @@ var gameView = require('./routes/game');
 var server = require('socket.io');
 var io = server(http);
 var socketSetup = require('./server_modules/socketSetup');
+var mapService = require('./server_modules/mapService');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,10 +21,15 @@ app.get('/game', gameView.gamePage);
 io.on('connection', socketSetup.socketConnection);
 socketSetup.setSocketServer(io);
 
+mapService.loadMapsIntoMemory(function(err){
+    if (err) {
+        console.log(err.swMessage); console.log(err);
+    }
+});
+
 http.listen(3000, function(){
     console.log('listening on port 3000');
 });
-
 
 
 
