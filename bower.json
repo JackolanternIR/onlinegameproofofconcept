@@ -1,5 +1,6 @@
 {
   "name": "sideworldprototype",
+  "directory": "/public/bower_components",
   "version": "0.0.1",
   "authors": [
     "timcrouch <dacypher@gmail.com>"
